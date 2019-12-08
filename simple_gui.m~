@@ -93,12 +93,6 @@ surf(handles.current_data);
 [x,Fs] = audioread(get(handles.browseTxt, 'String'));
 clear sound;% stop other sounds
 sound(x, Fs, 16);
-% Plot the waveform.
-tDouble = (1 : length(x)) / Fs; % Get time axis as a double.  Convert number of elements into actual seconds (still a double though).
-tDouble = tDouble / 60; % Convert to minutes (still a double though).
-tMin = datetime(0,0,0) + minutes(tDouble); % Convert variable class from "double" to "duration".
-axes(handles.originalAxes); % select axes
-plot(tMin, x(:, 1));  % Display waveform.
 
 % --- Executes on button press in pushbutton2.
 function mesh_pushbutton_Callback(hObject, eventdata, handles)
@@ -262,21 +256,11 @@ b = get(handles.bTxt, 'String')
 a = get(handles.aTxt, 'String')
 if isnan(str2double(b))
     warndlg('Please enter integer values to b','Warning');
-elseif isnan(str2double(a))
-    warndlg('Please enter integer values to a','Warning');
-else
-    y = filter(str2double(char(b)),str2double(char(a)),x);
-    clear sound;% stop other sounds
-    sound(y, Fs, 16);
-    % Plot the waveform.
-    tDouble = (1 : length(y)) / Fs; % Get time axis as a double.  Convert number of elements into actual seconds (still a double though).
-    tDouble = tDouble / 60; % Convert to minutes (still a double though).
-    tMin = datetime(0,0,0) + minutes(tDouble); % Convert variable class from "double" to "duration".
-    axes(handles.filteredAxes); % select axes
-    stem(tMin,y)
-    
-    % filterexalpha.m örnek var!!!!
-end
+elseif isnan(str2double(b))
+    warndlg('Please enter integer values to b','Warning');
+y = filter(str2double(char(b)),str2double(char(a)),x);
+clear sound;% stop other sounds
+sound(y, Fs, 16);
 
 function browseTxt_Callback(hObject, eventdata, handles)
 % hObject    handle to browseTxt (see GCBO)
