@@ -273,7 +273,7 @@ else
     tDouble = tDouble / 60; % Convert to minutes (still a double though).
     tMin = datetime(0,0,0) + minutes(tDouble); % Convert variable class from "double" to "duration".
     axes(handles.filteredAxes); % select axes
-    stem(tMin,y)
+    plot(tMin, y(:, 1));  % Display waveform.
     
     % filterexalpha.m örnek var!!!!
 end
