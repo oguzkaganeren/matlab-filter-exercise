@@ -3,3 +3,4 @@
 % DO NOT RUN IT AGAIN!
 guide simple_gui.fig;
 edit simple_gui.m
+openExample('dsp/DetermineWhetherAnFIRFilterExample')
